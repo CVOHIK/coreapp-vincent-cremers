@@ -1,0 +1,39 @@
+﻿@model ICollection<Buisiness.Customer>
+@{
+    Layout = Layout = "~/Views/Shared/_Layout.cshtml"; ;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+
+    <h1>Welcome To My WebShop</h1>
+    <h2>Select customer</h2>
+    
+    <table class="table table-striped table-bordered table-sm" cellspacing="0">
+        @foreach (Buisiness.Customer customer in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => customer.FirstName)
+                    @Html.Display(" ")
+                    @Html.DisplayFor(modelItem => customer.Name)
+
+                </td>
+                <td>
+                    <a asp-controller="Shop" asp-action="DetailCustomer" asp-route-id="@customer.Id">List ShoppingBags</a>
+                </td>
+            </tr>
+        }
+
+    </table>
+
+    <a hidden asp-controller="Shop" asp-action="AddRandomData">Add Data</a>
+    
+</body>
+</html>

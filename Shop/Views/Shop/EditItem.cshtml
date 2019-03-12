@@ -1,0 +1,32 @@
+﻿@model Buisiness.ShoppingItem;
+@{
+    ViewData["Title"] = "EditItem";
+}
+
+<h4>Eddit ShoppingItem</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditItem" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input hidden class="label" asp-for="Bag.Id" readonly />
+            <input class="label" asp-for="Id" readonly />
+            <div class="form-group">
+                <label> ProductName</label>
+                <input asp-for="Product.Name" class="form-control" readonly />
+
+            </div>
+            <div class="form-group">
+                <label>Qty</label>
+                <input asp-for="Quantity" class="form-control" min="1" max="99" />
+                <span asp-validation-for="Quantity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+                <a asp-controller="Shop" asp-action="DetailBag" asp-route-id="@Model.Bag.Id" class="btn btn-default">Cancel</a>
+            </div>
+
+        </form>
+    </div>
+</div>
+

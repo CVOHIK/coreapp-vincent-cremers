@@ -1,0 +1,11 @@
+﻿
+@{
+    ViewData["Title"] = "ErrorMessage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ErrorMessage</h2>
+<i>@ViewData["message"] </i>
+<br />
+<a asp-action=@ViewData["action"] asp-controller=@ViewData["controller"]>Back</a>
+

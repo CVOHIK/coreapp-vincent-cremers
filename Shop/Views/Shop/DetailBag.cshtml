@@ -1,0 +1,128 @@
+﻿@model Buisiness.ViewModel.DetailBagVM;
+@{
+    ViewData["Title"] = "DetailBag";
+    Double subTotal = 0;
+
+}
+
+
+<h2>Detail ShoppingBag</h2>
+<hr />
+<dl class="dl-horizontal">
+    <dt>
+        @Html.DisplayNameFor(model => model.Customer.FirstName)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.Customer.FirstName)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.Customer.Name)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.Customer.Name)
+    </dd>
+</dl>
+<hr />
+<div  >
+<H3>Add Items to Bag</H3>
+
+<form class="form-inline" method="post" asp-action="NewShoppingBagItem">
+    <input type="hidden" asp-for="ShoppingBag.Id" />
+
+    <label>Qty</label>
+    <input asp-for="AddProductQty" class="form-control" min="1" max="99"/>
+    <select class="form-control" asp-for="AddProductId" asp-items="Model.Products"></select>
+    <button type="submit" class="btn btn-default">Add Product</button>
+
+</form>
+
+<hr />
+</div>  
+<h3>Shopping Bag</h3>
+<table class="table">
+    <tr>
+        <th>Id</th>
+        <th>Product</th>
+        <th class="text-right">Qty</th>
+        <th class="text-right">Unit Price</th>
+        <th class="text-right">Sub total</th>
+        <th />
+    </tr>
+    @foreach (Buisiness.ShoppingItem shoppingItem in Model.ShoppingBag.Items)
+    {
+        subTotal = shoppingItem.Quantity * shoppingItem.Product.Price;
+        <tr>
+            <td>
+                @Html.DisplayFor(model => shoppingItem.Id)
+
+            </td>
+            <td>
+                @Html.DisplayFor(model => shoppingItem.Product.Name)
+            </td>
+            <td class="text-right">
+                @Html.DisplayFor(model => shoppingItem.Quantity)
+            </td>
+            <td class="text-right">
+                @String.Format("{0:c}",shoppingItem.Product.Price)
+            </td>
+            <td class="text-right">
+                @String.Format("{0:c}",subTotal)
+            </td>
+            <td class="text-right">
+                <a asp-controller="Shop" asp-action="EditItem" asp-route-id="@shoppingItem.Id">Edit</a>
+            </td>
+        </tr>
+    }
+    <tr class="active thickTopBorder">
+
+        <td />
+        <td />
+        <td></td>
+        <td class="text-right">
+            <strong>Total</strong>
+        </td>
+        <td class="text-right">
+            <strong>
+
+                @String.Format("{0:c}", Model.ShoppingBag.TotalPrice)
+            </strong>
+        </td>
+        <td />
+    </tr>
+    <tr class="active">
+        <td />
+        <td />
+        <td class="text-right">
+            <strong>
+                @Html.DisplayFor(model => Model.ShoppingBag.NrOfItemsInBag)
+            </strong>
+        </td>
+        <td class="text-right">
+            <strong>Discount</strong>
+        </td>
+        <td class="text-right">
+            <strong>
+                @String.Format("{0:c}", Model.ShoppingBag.Discount)
+            </strong>
+        </td>
+        <td />
+    </tr>
+    <tr class="info">
+        <td />
+        <td />
+        <td />
+        <td class="text-right">
+            <strong>Total</strong>
+        </td>
+        <td class="text-right">
+            <strong>
+                @String.Format("{0:c}", Model.ShoppingBag.TotalMinusDiscount)
+            </strong>
+        </td>
+        <td />
+    </tr>
+
+</table>
+<a asp-action="DetailCustomer" asp-controller="Shop" asp-route-id="@Model.Customer.Id">Back</a>
+
+

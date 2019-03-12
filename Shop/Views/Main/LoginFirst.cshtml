@@ -1,0 +1,32 @@
+﻿
+@{
+    //Layout = Layout = "~/Views/Shared/_LayoutNotLoggedIn.cshtml"; 
+    Layout = Layout = "~/Views/Shared/_Layout.cshtml"; 
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+
+<body>
+    <div class="jumbotron" style="margin-top:2em">
+        <h1>Welcome To My WebShop</h1>
+        <a asp-area="Identity" asp-controller="Account" asp-action="Login">Login First</a>
+        <br/>
+        <p><small><i>
+
+    Admin user : "admin@admin.be", "vincent@cremers.be" <br />
+    paswoord : 123123 <br /><br />
+
+    Normal User = "Bill@gates.be","steve@jobs.be","nadine@ringoot.be"  <br />
+    paswoord : 123123<br /><br />
+
+    Or <a asp-area="Identity" asp-controller="Account" asp-action="Register">register</a> as a new user
+</i></small></p>
+    </div>
+</body>
+</html>

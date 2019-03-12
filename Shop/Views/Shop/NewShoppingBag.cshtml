@@ -1,0 +1,41 @@
+﻿@model Buisiness.ViewModel.NewShoppingBagVM
+@{
+    ViewData["Title"] = "NewShoppingBag";
+}
+
+<h2>NewShoppingBag</h2>
+
+<hr />
+
+<div>
+
+</div>
+<form action="NewShoppingBag" method="post">
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer.FirstName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Customer.FirstName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Customer.Name)
+        </dd>
+    </dl>
+    <input type="hidden" asp-for="Date" />
+    <input type="hidden" asp-for="ShoppingBagId" />
+    <input type="hidden" asp-for="Customer.Id" />
+
+
+    @*<input type="submit"
+        value="Create" />*@
+    <div class="form-group">
+        <input type="submit" value="Save" class="btn btn-default" />
+    </div>
+
+
+</form>
+
